@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+    This manifest was generated using the "Create store-compatible AndroidManifest.xml" feature
+    of the Oculus Unity integration, with a few modifications commented below.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto">
+    <uses-feature android:name="android.hardware.vr.headtracking" android:version="1" android:required="true" /><!-- Request the headset DoF mode -->
+    <!--
+        The store-compatible manifest does not set android:label, which is used to show the app
+        name in "Unknown sources" and when the game is paused while the dash is opened.
+    -->
+    <application
+        android:label="@string/app_name"
+        android:allowBackup="false">
+        <activity
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
+            android:launchMode="singleTask"
+            android:name="com.unity3d.player.UnityPlayerActivity"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <!--
+                    The store-compatible manifest sets category INFO, but category LAUNCHER
+                    is required for Unity auto-launch during development.
+                -->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="false" />
+    </application>
+</manifest>
