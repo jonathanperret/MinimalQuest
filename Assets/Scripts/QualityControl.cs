@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour
+public class QualityControl : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -12,12 +12,12 @@ public class TestScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("Increasing");
             QualitySettings.IncreaseLevel();
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (OVRInput.GetDown(OVRInput.Button.Two))
         {
             Debug.Log("Decreasing");
             QualitySettings.DecreaseLevel();
