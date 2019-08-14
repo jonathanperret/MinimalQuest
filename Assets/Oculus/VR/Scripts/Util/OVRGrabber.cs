@@ -50,6 +50,9 @@ public class OVRGrabber : MonoBehaviour
     [SerializeField]
     protected Transform m_parentTransform;
 
+    public OVRCameraRig m_rig = null;
+    public bool m_teleportHand = false;
+
     protected bool m_grabVolumeEnabled = true;
     protected Vector3 m_lastPos;
     protected Quaternion m_lastRot;
@@ -89,14 +92,17 @@ public class OVRGrabber : MonoBehaviour
 
 		// If we are being used with an OVRCameraRig, let it drive input updates, which may come from Update or FixedUpdate.
 
-		OVRCameraRig rig = null;
-		if (transform.parent != null && transform.parent.parent != null)
-			rig = transform.parent.parent.GetComponent<OVRCameraRig>();
-
-		if (rig != null)
+		if (m_rig == null) {
+			if (transform.parent != null && transform.parent.parent != null)
+				m_rig = transform.parent.parent.GetComponent<OVRCameraRig>();
+		}
+		if (m_rig != null)
 		{
-			rig.UpdatedAnchors += (r) => {OnUpdatedAnchors();};
+			Debug.Log("Operating with CameraRig !");
+			m_rig.UpdatedAnchors += (r) => {OnUpdatedAnchors();};
 			operatingWithoutOVRCameraRig = false;
+		} else {
+			Debug.Log("Operating without CameraRig !");
 		}
     }
 
@@ -134,8 +140,15 @@ public class OVRGrabber : MonoBehaviour
         Quaternion handRot = OVRInput.GetLocalControllerRotation(m_controller);
         Vector3 destPos = m_parentTransform.TransformPoint(m_anchorOffsetPosition + handPos);
         Quaternion destRot = m_parentTransform.rotation * handRot * m_anchorOffsetRotation;
-        GetComponent<Rigidbody>().MovePosition(destPos);
-        GetComponent<Rigidbody>().MoveRotation(destRot);
+
+        if (m_teleportHand)
+        {
+            transform.position = destPos;
+            transform.rotation = destRot;
+        } else     {
+            GetComponent<Rigidbody>().MovePosition(destPos);
+            GetComponent<Rigidbody>().MoveRotation(destRot);
+        }
 
         if (!m_parentHeldObject)
         {
