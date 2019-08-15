@@ -12,6 +12,7 @@ public class QualityControl : MonoBehaviour
 
     void Update()
     {
+#if UNITY_ANDROID
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("Increasing");
@@ -22,5 +23,6 @@ public class QualityControl : MonoBehaviour
             Debug.Log("Decreasing");
             QualitySettings.DecreaseLevel();
         }
+#endif
     }
 }
