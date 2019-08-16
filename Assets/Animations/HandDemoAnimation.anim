@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_flex
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   - curve:
@@ -97,7 +97,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_point
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   - curve:
@@ -143,7 +143,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_thumbsUp
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   m_PPtrCurves: []
@@ -231,7 +231,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_flex
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   - curve:
@@ -277,7 +277,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_point
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   - curve:
@@ -323,7 +323,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_thumbsUp
-    path: hand
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: 352d492b3e4ee4c91946d83afece14ec, type: 3}
   m_EulerEditorCurves: []
