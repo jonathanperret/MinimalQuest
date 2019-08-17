@@ -32,12 +32,11 @@ namespace OVRTouchSample
         public const float TRIGGER_DEBOUNCE_TIME = 0.05f;
         public const float THUMB_DEBOUNCE_TIME = 0.15f;
 
-        [SerializeField]
-        private OVRInput.Controller m_controller;
-        [SerializeField]
-        private Animator m_animator = null;
-        [SerializeField]
-        private HandPose m_defaultGrabPose;
+        public OVRInput.Controller m_controller;
+
+        public Animator m_animator = null;
+
+        public HandPose m_defaultGrabPose;
 
         private Collider[] m_colliders = null;
         private bool m_collisionEnabled = true;
