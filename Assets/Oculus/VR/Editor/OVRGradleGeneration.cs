@@ -20,6 +20,7 @@ limitations under the License.
 ************************************************************************************/
 
 //#define BUILDSESSION
+//#define OVR_ANDROID_TIME_DEPLOY
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -37,7 +38,10 @@ using System;
 
 
 #if UNITY_2018_1_OR_NEWER
-public class OVRGradleGeneration : IPreprocessBuildWithReport, IPostprocessBuildWithReport
+public class OVRGradleGeneration : IPreprocessBuildWithReport
+#if OVR_ANDROID_TIME_DEPLOY
+	, IPostprocessBuildWithReport
+#endif
 #if UNITY_ANDROID
 	, IPostGenerateGradleAndroidProject
 #endif
@@ -122,6 +126,7 @@ public class OVRGradleGeneration : IPreprocessBuildWithReport, IPostprocessBuild
 #endif
 	}
 
+#if OVR_ANDROID_TIME_DEPLOY
 	public void OnPostprocessBuild(BuildReport report)
 	{
 #if UNITY_ANDROID
@@ -288,5 +293,6 @@ public class OVRGradleGeneration : IPreprocessBuildWithReport, IPostprocessBuild
 		}
 	}
 #endif
+#endif // OVR_ANDROID_TIME_DEPLOY
 }
 #endif
