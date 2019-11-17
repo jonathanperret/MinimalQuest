@@ -1,0 +1,53 @@
+version: 2
+references:
+  docker_image: &docker_image
+    docker:
+    - image: gableroux/unity3d:2018.4.12f1-android
+      environment:
+        BUILD_TARGET: Android
+  setup_unity_license: &setup_unity_license
+    command: "./ci/before_script.sh"
+jobs:
+  test_editmode:
+    <<: *docker_image
+    steps:
+    - checkout
+    - run:
+        <<: *setup_unity_license
+    - run:
+        environment:
+          TEST_PLATFORM: editmode
+        command: "./ci/test.sh"
+    - store_artifacts:
+        path: "$(pwd)/$TEST_PLATFORM-results.xml"
+        destination: "$TEST_PLATFORM-results.xml"
+  test_playmode:
+    <<: *docker_image
+    steps:
+    - checkout
+    - run:
+        <<: *setup_unity_license
+    - run:
+        environment:
+          TEST_PLATFORM: playmode
+        command: "./ci/test.sh"
+    - store_artifacts:
+        path: "$(pwd)/$TEST_PLATFORM-results.xml"
+        destination: "$TEST_PLATFORM-results.xml"
+  build_Android:
+    <<: *docker_image
+    steps:
+    - checkout
+    - run:
+        <<: *setup_unity_license
+    - run:
+        command: "BUILD_NAME=MinimalQuest-${CIRCLE_SHA1:0:8} ./ci/build.sh"
+    - store_artifacts:
+        path: "./Builds/"
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+    # - test_editmode
+    # - test_playmode
+    - build_Android
