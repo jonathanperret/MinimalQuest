@@ -38,10 +38,17 @@ jobs:
     <<: *docker_image
     steps:
     - checkout
+    - restore_cache:
+        keys:
+          - "v1-library"
     - run:
         <<: *setup_unity_license
     - run:
-        command: "BUILD_NAME=MinimalQuest-${CIRCLE_SHA1:0:8} ./ci/build.sh"
+        command: "BUILD_NAME=${CIRCLE_PROJECT_REPONAME}-${CIRCLE_SHA1:0:8} ./ci/build.sh"
+    - save_cache:
+        key: "v1-library"
+        paths:
+          - "Library"
     - store_artifacts:
         path: "./Builds/"
 workflows:
