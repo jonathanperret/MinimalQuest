@@ -51,6 +51,7 @@ jobs:
           - "Library"
     - store_artifacts:
         path: "./Builds/"
+        destination: "/"
 workflows:
   version: 2
   test_and_build:
