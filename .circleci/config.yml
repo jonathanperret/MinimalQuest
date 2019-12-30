@@ -2,7 +2,7 @@ version: 2
 references:
   docker_image: &docker_image
     docker:
-    - image: gableroux/unity3d:2018.4.12f1-android
+    - image: gableroux/unity3d:2018.4.14f1-android
       environment:
         BUILD_TARGET: Android
   setup_unity_license: &setup_unity_license
